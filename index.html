@@ -301,18 +301,39 @@
       </div>
     </div></section>
 
-    <section id="contact" class="card"><div class="body">
-      <h2 style="margin-top:0">Request Information / Schedule a Tour</h2>
-      <form action="https://formspree.io/f/moqzlgjy" method="POST" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
-        <input required name="name" placeholder="Your name" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
-        <input required type="email" name="email" placeholder="Email address" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
-        <input name="phone" placeholder="Phone (optional)" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
-        <input name="when" placeholder="Preferred date/time" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
-        <textarea name="message" placeholder="Tell us what you’d like to know" rows="5" style="grid-column:1/-1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)"></textarea>
-        <button class="cta" type="submit" style="border:0;cursor:pointer">Send Request</button>
-      </form>
-      <p class="muted" style="margin-top:10px;font-size:13px">This form uses Formspree for demo purposes. Replace the <code>action</code> URL with your own endpoint.</p>
-    </div></section>
+    <section id="contact" class="card">
+    <div class="body">
+    <h2 style="margin-top:0">Request Information / Schedule a Tour</h2>
+
+    <form action="https://formspree.io/f/xldonapp" method="POST"
+          style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+      <!-- visible fields -->
+      <input required name="name"  placeholder="Your name"
+             style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+      <input required type="email" name="email" placeholder="Email address"
+             style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+      <input name="phone" placeholder="Phone (optional)"
+             style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+      <input name="when" placeholder="Preferred date/time"
+             style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+      <textarea name="message" placeholder="Tell us what you’d like to know" rows="5"
+                style="grid-column:1/-1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)"></textarea>
+
+      <!-- hidden helpers -->
+      <input type="hidden" name="_subject"  value="New inquiry — 514 Cedar Crest Circle">
+      <input type="hidden" name="listing"   value="514 Cedar Crest Circle, Woodstock GA 30188">
+      <input type="hidden" name="_redirect" value="https://514cedarcrestcircle.online/#thanks">
+      <input type="text"   name="_gotcha"   style="display:none"> <!-- spam trap -->
+
+      <button class="cta" type="submit" style="border:0;cursor:pointer">Send Request</button>
+    </form>
+
+    <p class="muted" style="margin-top:10px;font-size:13px">
+      This form is powered by Formspree. We’ll never share your info.
+    </p>
+    </div>
+    </section>
+
 
     <footer>
       <div style="margin-bottom:10px">Equal Housing Opportunity • All information deemed reliable but not guaranteed.</div>
@@ -355,5 +376,20 @@
     })();
   </script>
   <script async src="https://www.instagram.com/embed.js"></script>
+
+  <section id="thanks" class="card" style="display:none;">
+  <div class="body">
+    <h2 style="margin-top:0">Thanks!</h2>
+    <p class="muted">Your request was sent. We’ll get back to you shortly.</p>
+  </div>
+  </section>
+
+  <script>
+  if (location.hash === '#thanks') {
+    const thx = document.getElementById('thanks');
+    if (thx) thx.style.display = 'block';
+  }
+  </script>
+
 </body>
 </html>
