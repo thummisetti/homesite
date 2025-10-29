@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>123 Maple Lane — Single-Property Listing</title>
+  <meta name="description" content="Charming 4-bed home with modern upgrades and a sun-filled layout. Explore photos, features, neighborhood map, and book a tour." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="123 Maple Lane — For Sale" />
+  <meta property="og:description" content="Explore photos, features, neighborhood map, and book a tour." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/images/hero.jpg" />
+  <meta property="og:url" content="https://www.123maplelane.com" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='80'%3E%F0%9F%8F%A0%3C/text%3E%3C/svg%3E">
+  <style>
+    :root{
+      --bg:#0f172a; --card:#111827ee; --muted:#94a3b8; --accent:#22c55e; --accent-2:#60a5fa; --text:#e5e7eb;
+      --shadow:0 10px 25px rgba(0,0,0,.35); --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1229 0%, #0f172a 40%, #0b1229 100%);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    a{color:inherit}
+    .container{max-width:1150px;margin:0 auto;padding:24px}
+    header{position:sticky;top:0;z-index:20;background:rgba(8,12,28,.65);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:700}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:#d1fae5;background:linear-gradient(180deg,rgba(34,197,94,.15),rgba(34,197,94,.06));}
+    .cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#22c55e,#16a34a);padding:12px 16px;border-radius:999px;font-weight:700;box-shadow:var(--shadow);text-decoration:none}
+    .cta.secondary{background:linear-gradient(135deg,#60a5fa,#3b82f6)}
+    .grid{display:grid;gap:18px}
+    .hero{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
+    .hero img{width:100%;height:520px;object-fit:cover;display:block;filter:saturate(105%) contrast(105%)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(6,7,13,.75) 70%)}
+    .hero-content{position:absolute;left:24px;right:24px;bottom:24px;display:flex;flex-wrap:wrap;gap:14px;align-items:end;justify-content:space-between}
+    .stats{display:flex;gap:10px;flex-wrap:wrap}
+    .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px}
+    .price{font-size:clamp(24px, 3vw, 42px);font-weight:800}
+    section{margin:36px 0}
+    .card{background:linear-gradient(180deg,rgba(17,24,39,.9),rgba(2,6,23,.6));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .card .body{padding:22px}
+    .split{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    @media (max-width: 900px){.split{grid-template-columns:1fr}}
+    .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
+    .gallery img{width:100%;height:100%;object-fit:cover;border-radius:12px;cursor:pointer}
+    .g-span-7{grid-column:span 7}.g-span-5{grid-column:span 5}.g-span-3{grid-column:span 3}.g-span-4{grid-column:span 4}.g-span-6{grid-column:span 6}
+    @media (max-width: 900px){.g-span-7,.g-span-5,.g-span-6,.g-span-4{grid-column:span 12}.g-span-3{grid-column:span 6}}
+    ul.clean{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    ul.clean li{padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px}
+    @media (max-width:700px){ul.clean{grid-template-columns:1fr}}
+    .map{position:relative;padding-bottom:56%;height:0;overflow:hidden;border-radius:12px}
+    .map iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:12px}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+    .lightbox img{max-width:92vw;max-height:85vh;border-radius:14px}
+    footer{margin:40px 0 80px;color:var(--muted);text-align:center}
+    .realtor{display:flex;gap:12px;align-items:center}
+    .realtor img{width:52px;height:52px;border-radius:50%;object-fit:cover}
+    .fab{position:fixed;right:18px;bottom:18px;display:flex;gap:10px}
+    .fab a{display:inline-flex;padding:14px 16px;border-radius:999px;text-decoration:none;font-weight:700}
+    .muted{color:var(--muted)}.pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SingleFamilyResidence",
+    "name": "123 Maple Lane",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "123 Maple Lane",
+      "addressLocality": "Alpharetta",
+      "addressRegion": "GA",
+      "postalCode": "30004",
+      "addressCountry": "US"
+    },
+    "numberOfRooms": 8,
+    "numberOfBathroomsTotal": 3,
+    "floorSize": {"@type": "QuantitativeValue", "value": 2850, "unitCode": "FTK"},
+    "url": "https://www.123maplelane.com",
+    "offers": {"@type": "Offer", "price": 950000, "priceCurrency": "USD", "availability": "https://schema.org/InStock"}
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="badge">FOR SALE</span>
+        <div>
+          <div style="font-size:15px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)">123 Maple Lane</div>
+          <div style="font-size:18px; font-weight:700">Alpharetta, GA 30004</div>
+        </div>
+      </div>
+      <div class="actions">
+        <a class="cta" href="#contact">Book a Tour</a>
+        <a class="cta secondary" href="#gallery">View Photos</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero">
+      <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?q=80&w=2000&auto=format&fit=crop" alt="Front exterior of 123 Maple Lane" />
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div>
+          <div class="price">$950,000</div>
+          <div class="stats">
+            <div class="stat">4 Beds</div><div class="stat">3 Baths</div><div class="stat">2,850 Sq Ft</div><div class="stat">0.34 Acre Lot</div>
+          </div>
+        </div>
+        <div class="realtor">
+          <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=256&auto=format&fit=crop" alt="Bhoomi Realty logo/headshot" />
+          <div><div style="font-weight:700">Bhoomi Realty</div><div class="muted" style="font-size:14px">Virtual Properties Realty.Biz • GA Brokerage</div></div>
+        </div>
+      </div>
+    </div>
+
+    <section class="split">
+      <div class="card"><div class="body">
+        <h2 style="margin:0 0 10px 0">Property Overview</h2>
+        <p class="muted">Bright, airy living with an open concept main level, chef’s kitchen, and a private, fenced backyard perfect for gatherings. Primary suite features vaulted ceilings and a spa bath. Minutes to parks, shops, and top-rated schools.</p>
+        <ul class="clean" style="margin-top:14px">
+          <li>Year Built: 2016</li><li>Garage: 2-car</li><li>HVAC: Dual-zone</li><li>HOA: $720/yr</li><li>Brokerage: Virtual Properties Realty.Biz (GA)</li><li>Taxes (’24): $6,980</li>
+        </ul>
+        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
+          <span class="pill">Smart Home</span><span class="pill">EV-ready</span><span class="pill">Hardwood Floors</span><span class="pill">Cul-de-sac</span>
+        </div>
+      </div></div>
+      <div class="card"><div class="body">
+        <h3 style="margin-top:0">Open House</h3>
+        <p class="muted">Saturday 1:00–4:00 PM & Sunday 12:00–3:00 PM</p>
+        <h3>Contact</h3>
+        <p class="muted">Call/text <a href="tel:+14043981112">(404) 398‑1112</a> or email <a href="mailto:info@bhoomirealtyga.com">info@bhoomirealtyga.com</a></p>
+        <a class="cta" href="#contact">Request Info</a>
+      </div></div>
+    </section>
+
+    <section id="gallery" class="card"><div class="body">
+      <h2 style="margin-top:0">Photo Gallery</h2>
+      <div class="gallery">
+        <img class="g-span-7" src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1800&auto=format&fit=crop" alt="Living room" />
+        <img class="g-span-5" src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1400&auto=format&fit=crop" alt="Kitchen" />
+        <img class="g-span-4" src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=1200&auto=format&fit=crop" alt="Primary bedroom" />
+        <img class="g-span-4" src="https://images.unsplash.com/photo-1600573472591-ee6c8e695c62?q=80&w=1200&auto=format&fit=crop" alt="Bathroom" />
+        <img class="g-span-4" src="https://images.unsplash.com/photo-1600585154340-1e4ce9a9d1c2?q=80&w=1200&auto=format&fit=crop" alt="Backyard" />
+        <img class="g-span-6" src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1600&auto=format&fit=crop" alt="Dining" />
+        <img class="g-span-3" src="https://images.unsplash.com/photo-1582582621959-48d0b3a0d9db?q=80&w=800&auto=format&fit=crop" alt="Office" />
+        <img class="g-span-3" src="https://images.unsplash.com/photo-1560185008-b033106af10f?q=80&w=800&auto=format&fit=crop" alt="Staircase" />
+        <img class="g-span-3" src="https://images.unsplash.com/photo-1600607687920-4ce9cefc50aa?q=80&w=800&auto=format&fit=crop" alt="Mudroom" />
+        <img class="g-span-3" src="https://images.unsplash.com/photo-1616594039009-2d0a73e7f24b?q=80&w=800&auto=format&fit=crop" alt="Laundry" />
+      </div>
+    </div></section>
+
+    <section class="split">
+      <div class="card"><div class="body">
+        <h2 style="margin-top:0">Features & Upgrades</h2>
+        <ul class="clean">
+          <li>Quartz counters • 36” gas range</li><li>Walk-in pantry • Butler’s pass-through</li><li>Great room w/ fireplace & built-ins</li>
+          <li>Primary spa bath • frameless shower</li><li>Guest suite on main level</li><li>Covered patio • flat, fenced yard</li>
+          <li>Ring security • smart thermostat</li><li>New roof (2023) • fresh paint (2024)</li>
+        </ul>
+      </div></div>
+      <div class="card"><div class="body">
+        <h2 style="margin-top:0">Documents</h2>
+        <ul class="clean">
+          <li><a href="#">Seller’s Disclosure (PDF)</a></li><li><a href="#">Floor Plan (PDF)</a></li><li><a href="#">Survey (PDF)</a></li><li><a href="#">Property Highlights (PDF)</a></li>
+        </ul>
+      </div></div>
+    </section>
+
+    <section class="card"><div class="body">
+      <h2 style="margin-top:0">Video / 3D Tour</h2>
+      <div class="map" style="padding-bottom:56%">
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Property Video" allowfullscreen></iframe>
+      </div>
+    </div></section>
+
+    <section class="card"><div class="body">
+      <h2 style="margin-top:0">Location</h2>
+      <p class="muted">Close to parks, shopping, dining, and commuter routes.</p>
+      <div class="map">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen
+          src="https://www.google.com/maps?q=123%20Maple%20Lane%20Alpharetta%20GA%2030004&output=embed"></iframe>
+      </div>
+    </div></section>
+
+    <section id="contact" class="card"><div class="body">
+      <h2 style="margin-top:0">Request Information / Schedule a Tour</h2>
+      <form action="https://formspree.io/f/moqzlgjy" method="POST" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+        <input required name="name" placeholder="Your name" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+        <input required type="email" name="email" placeholder="Email address" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+        <input name="phone" placeholder="Phone (optional)" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+        <input name="when" placeholder="Preferred date/time" style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+        <textarea name="message" placeholder="Tell us what you’d like to know" rows="5" style="grid-column:1/-1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)"></textarea>
+        <button class="cta" type="submit" style="border:0;cursor:pointer">Send Request</button>
+      </form>
+      <p class="muted" style="margin-top:10px;font-size:13px">This form uses Formspree for demo purposes. Replace the <code>action</code> URL with your own endpoint.</p>
+    </div></section>
+
+    <footer>
+      <div style="margin-bottom:10px">Equal Housing Opportunity • All information deemed reliable but not guaranteed.</div>
+      <div style="font-size:13px">© <span id="year"></span> 123 Maple Lane • Listing presented by <strong>Bhoomi Realty</strong> — Brokered by <strong>Virtual Properties Realty.Biz</strong></div>
+      <div style="font-size:13px; margin-top:6px">Brokerage Address: 2750 Premiere Pkwy, Suite 200, Duluth, GA 30097 • Office: (770) 495‑5050 • Direct: (404) 398‑1112</div>
+    </footer>
+  </main>
+
+  <div class="fab">
+    <a class="cta" href="tel:+14043981112">Call</a>
+    <a class="cta secondary" href="sms:+14043981112">Text</a>
+  </div>
+
+  <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
+    <img id="lightbox-img" alt="Expanded photo"/>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const lb = document.getElementById('lightbox'); const lbImg = document.getElementById('lightbox-img');
+    document.querySelectorAll('.gallery img').forEach(img => { img.addEventListener('click', () => { lbImg.src = img.src; lb.style.display = 'flex'; }); });
+    lb.addEventListener('click', () => lb.style.display = 'none');
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lb.style.display = 'none'; });
+  </script>
+</body>
+</html>
