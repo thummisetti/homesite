@@ -50,65 +50,10 @@
     .card .body{padding:22px}
     .split{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
     @media (max-width: 900px){.split{grid-template-columns:1fr}}
-
-    /* preserve line breaks in selected text blocks */
-    .preserve { white-space: pre-line; }
-
-    /* === GALLERY (grid desktop + swipe carousel mobile) === */
-    .gallery-wrap { position: relative; }
-    .gallery {
-      display: grid;
-      gap: 10px;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    }
-    .gallery img{
-      width:100%;
-      height:100%;
-      aspect-ratio: 4 / 3;
-      object-fit:cover;
-      border-radius:12px;
-      cursor:pointer
-    }
-
-    /* Mobile: turn into a snap carousel */
-    @media (max-width: 900px){
-      .gallery{
-        display:flex;
-        overflow-x:auto;
-        scroll-snap-type:x mandatory;
-        -webkit-overflow-scrolling:touch;
-        padding-bottom:8px;
-        gap:10px;
-      }
-      .gallery img{
-        flex:0 0 85%;
-        scroll-snap-align:start;
-      }
-      .gallery-wrap .scroll{
-        position:absolute;
-        top:50%;
-        transform:translateY(-50%);
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
-        width:36px;height:36px;
-        border-radius:999px;
-        border:1px solid rgba(255,255,255,.2);
-        background:rgba(0,0,0,.35);
-        color:#fff;
-        cursor:pointer;
-        user-select:none;
-        z-index:2;
-      }
-      .gallery-wrap .scroll.prev{ left:6px; }
-      .gallery-wrap .scroll.next{ right:6px; }
-    }
-
-    /* Hide the arrows on desktop grid */
-    @media (min-width: 901px){
-      .gallery-wrap .scroll{ display:none; }
-    }
-
+    .gallery{display:grid;grid-template-columns:repeat(12,1fr);gap:10px}
+    .gallery img{width:100%;height:100%;object-fit:cover;border-radius:12px;cursor:pointer}
+    .g-span-7{grid-column:span 7}.g-span-5{grid-column:span 5}.g-span-3{grid-column:span 3}.g-span-4{grid-column:span 4}.g-span-6{grid-column:span 6}
+    @media (max-width: 900px){.g-span-7,.g-span-5,.g-span-6,.g-span-4{grid-column:span 12}.g-span-3{grid-column:span 6}}
     ul.clean{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
     ul.clean li{padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px}
     @media (max-width:700px){ul.clean{grid-template-columns:1fr}}
@@ -188,17 +133,21 @@
     <section class="split">
       <div class="card"><div class="body">
         <h2 style="margin:0 0 10px 0">Property Overview</h2>
-        <p class="muted preserve">Presenting the stunning north-facing Parkstone floor plan featuring 5 bedrooms, 5.5 baths, and 5,343 sq. ft. of finished living space, plus 2,466 sq. ft. of unfinished basement. Nestled on a half-acre cul-de-sac lot, this home offers elegance, privacy, and one of the community’s most desirable ultra-level lots.
+        <p class="muted">Presenting the stunning north-facing Parkstone floor plan featuring 5 bedrooms, 5.5 baths, and 5,343 sq. ft. of finished living space, plus 2,466 sq. ft. of unfinished basement. Nestled on a half-acre cul-de-sac lot, this home offers elegance, privacy, and one of the community’s most desirable ultra-level lots.
 
-✨ Highlights:
-  • Gourmet kitchen with quartz countertops, ceiling-height cabinetry with accent lighting, gas cooktop, double ovens, farmhouse sink, and a full prep kitchen with finished pantry
-  • Formal dining room with quartz buffet and a private office for flexible living
-  • Spacious loft upstairs and a luxurious primary suite with sitting area, spa-inspired bath, oversized dual-head shower, freestanding tub, and custom California Closet
-  • Each secondary bedroom includes a private en-suite bath
 
-🌟 Upgrades include: smart lighting, mosaic marble feature walls, upgraded flooring, surround sound wiring, epoxy-finished 3-car garage, permanent smart holiday lights, and a PoE hardwired security system.
+        ✨ Highlights:
+          • Gourmet kitchen with quartz countertops, ceiling-height cabinetry with accent lighting, gas cooktop, double ovens, farmhouse sink, and a full prep kitchen with finished pantry
+          • Formal dining room with quartz buffet and a private office for flexible living
+          • Spacious loft upstairs and a luxurious primary suite with sitting area, spa-inspired bath, oversized dual-head shower, freestanding tub, and custom California Closet
+          • Each secondary bedroom includes a private en-suite bath
 
-🏊 Residents of Milton Overlook enjoy walkable amenities—pool, tennis, and playground—all just minutes from Alpharetta, Milton, and Roswell, with the advantage of lower Cherokee County taxes.</p>
+
+        🌟 Upgrades include: smart lighting, mosaic marble feature walls, upgraded flooring, surround sound wiring, epoxy-finished 3-car garage, permanent smart holiday lights, and a PoE hardwired security system.
+
+
+
+        🏊 Residents of Milton Overlook enjoy walkable amenities—pool, tennis, and playground—all just minutes from Alpharetta, Milton, and Roswell, with the advantage of lower Cherokee County taxes.</p>
         <ul class="clean" style="margin-top:14px">
           <li>Year Built: 2024</li><li>Garage: 3-car</li><li>HVAC: Dual-zone</li><li>HOA: $1050/yr</li><li>Brokerage: Virtual Properties Realty.Biz (GA)</li><li>Taxes (’24): $6,980</li>
         </ul>
@@ -209,52 +158,42 @@
       <div class="card"><div class="body">
         <h3 style="margin-top:0">Showings by appointment only</h3>
         <h3>Contact</h3>
-        <p class="muted">Call/text <a href="tel:+14043981112">(404) 398-1112</a> or email <a href="mailto:info@bhoomirealtyga.com">info@bhoomirealtyga.com</a></p>
+        <p class="muted">Call/text <a href="tel:+14043981112">(404) 398‑1112</a> or email <a href="mailto:info@bhoomirealtyga.com">info@bhoomirealtyga.com</a></p>
         <a class="cta" href="#contact">Request Info</a>
       </div></div>
     </section>
 
-    <!-- ===== GALLERY SECTION (grid desktop, swipe on mobile) ===== -->
-    <section id="gallery" class="card">
-      <div class="body">
-        <h2 style="margin-top:0">Photo Gallery</h2>
-
-        <div class="gallery-wrap">
-          <button class="scroll prev" aria-label="Previous photo">‹</button>
-
-          <div class="gallery scroller">
-            <img src="/images/living_room_kitchen.jpg"       alt="Living room & kitchen"  loading="lazy" decoding="async"/>
-            <img src="/images/living_room_deck.jpg"          alt="Living room deck"       loading="lazy" decoding="async"/>
-            <img src="/images/living_room_tv.jpg"            alt="Living room TV wall"    loading="lazy" decoding="async"/>
-            <img src="/images/gourmet_kitchen.jpg"           alt="Gourmet kitchen"        loading="lazy" decoding="async"/>
-            <img src="/images/gourmet_kitchen_fridge.jpg"    alt="Kitchen with fridge"    loading="lazy" decoding="async"/>
-            <img src="/images/gourmet_kitchen_stove_top.jpg" alt="Kitchen stove top"      loading="lazy" decoding="async"/>
-            <img src="/images/kitchen_island_tv.jpg"         alt="Kitchen island and TV"  loading="lazy" decoding="async"/>
-            <img src="/images/breakfast_nook.jpg"            alt="Breakfast nook"         loading="lazy" decoding="async"/>
-            <img src="/images/prep_kitchen.jpg"              alt="Prep kitchen"           loading="lazy" decoding="async"/>
-            <img src="/images/foyer_dining.jpg"              alt="Foyer & dining"         loading="lazy" decoding="async"/>
-            <img src="/images/formal_dining.jpg"             alt="Formal dining"          loading="lazy" decoding="async"/>
-            <img src="/images/powder_room.jpg"               alt="Powder room"            loading="lazy" decoding="async"/>
-            <img src="/images/stairs_up.jpg"                 alt="Stairs"                 loading="lazy" decoding="async"/>
-            <img src="/images/loft_deck.jpg"                 alt="Loft with deck"         loading="lazy" decoding="async"/>
-            <img src="/images/loft.jpg"                      alt="Loft"                   loading="lazy" decoding="async"/>
-            <img src="/images/master_bedroom.jpg"            alt="Primary bedroom"        loading="lazy" decoding="async"/>
-            <img src="/images/master_bath_shower.jpg"        alt="Primary bath shower"    loading="lazy" decoding="async"/>
-            <img src="/images/master_bath_tub.jpg"           alt="Primary bath tub"       loading="lazy" decoding="async"/>
-            <img src="/images/laundry.jpg"                   alt="Laundry room"           loading="lazy" decoding="async"/>
-            <img src="/images/downstairs_bedroom.jpg"        alt="Main-level bedroom"     loading="lazy" decoding="async"/>
-            <img src="/images/bedroom1.jpg"                  alt="Bedroom 1"              loading="lazy" decoding="async"/>
-            <img src="/images/bedroom2.jpg"                  alt="Bedroom 2"              loading="lazy" decoding="async"/>
-            <img src="/images/bedroom3.jpg"                  alt="Bedroom 3"              loading="lazy" decoding="async"/>
-            <img src="/images/aerial_front.jpg"              alt="Aerial front"           loading="lazy" decoding="async"/>
-            <img src="/images/aerial_top.jpg"                alt="Aerial top"             loading="lazy" decoding="async"/>
-            <img src="/images/aerial_back.jpg"               alt="Aerial back"            loading="lazy" decoding="async"/>
-          </div>
-
-          <button class="scroll next" aria-label="Next photo">›</button>
-        </div>
+    <section id="gallery" class="card"><div class="body">
+      <h2 style="margin-top:0">Photo Gallery</h2>
+      <div class="gallery">
+        <img class="g-span-7" src="/images/living_room_kitchen.jpg" alt="Living room" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/living_room_deck.jpg" alt="Living room" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/living_room_tv.jpg" alt="Living room" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/gourmet_kitchen.jpg" alt="Gourmet Kitchen" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/gourmet_kitchen_fridge.jpg" alt="Gourmet Kitchen" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/gourmet_kitchen_stove_top.jpg" alt="Gourmet Kitchen" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/kitchen_island_tv.jpg" alt="Gourmet Kitchen" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/breakfast_nook.jpg" alt="Breakfast Nook" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/prep_kitchen.jpg" alt="Prep Kitchen" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/foyer_dining.jpg" alt="Foyer" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/formal_dining.jpg" alt="Formal Dining room" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/powder_room.jpg" alt="Powder room" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/stairs_up.jpg" alt="Stairs" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/loft_deck.jpg" alt="Loft" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/loft.jpg" alt="Loft" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/master_bedroom.jpg" alt="Master bedroom" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/master_bath_shower.jpg" alt="Master bathroom" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/master_bath_tub.jpg" alt="Master bathroom" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/laundry.jpg" alt="Laundry room" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/downstairs_bedroom.jpg" alt="Bedroom" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/bedroom1.jpg" alt="Bedroom" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/bedroom2.jpg" alt="Bedroom" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/bedroom3.jpg" alt="Bedroom" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/aerial_front.jpg" alt="Aerial" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/aerial_top.jpg" alt="Living room" loading="lazy" decoding="async"/>
+        <img class="g-span-7" src="/images/aerial_back.jpg" alt="Living room" loading="lazy" decoding="async"/>
       </div>
-    </section>
+    </div></section>
 
     <section class="split">
       <div class="card"><div class="body">
@@ -274,18 +213,24 @@
     </section>
 
     <section class="card">
-      <div class="body">
-        <h2 style="margin-top:0">Video / 3D Tour</h2>
-        <blockquote 
-          class="instagram-media" 
-          data-instgrm-permalink="https://www.instagram.com/p/DOi3B8qjrc0/" 
-          data-instgrm-version="14"
-          data-instgrm-captioned 
-          data-instgrm-theme="dark"
-          style="background:transparent; border:0; margin:0 auto; max-width:540px; width:100%;">
-        </blockquote>
-      </div>
+    <div class="body">
+      <h2 style="margin-top:0">Video / 3D Tour</h2>
+
+      <blockquote 
+        class="instagram-media" 
+        data-instgrm-permalink="https://www.instagram.com/p/DOi3B8qjrc0/" 
+        data-instgrm-version="14"
+        data-instgrm-captioned 
+        data-instgrm-theme="dark"
+        style="background:transparent; border:0; margin:0 auto; max-width:540px; width:100%;">
+      </blockquote>
+
+    </div>
     </section>
+        
+
+      </div>
+    </div></section>
 
     <section class="card"><div class="body">
       <h2 style="margin-top:0">Location</h2>
@@ -299,6 +244,7 @@
           style="width:100%; height:100%; border:0; border-radius:12px;">
         </iframe>
       </div>
+
     </div></section>
 
     <section id="contact" class="card"><div class="body">
@@ -317,7 +263,7 @@
     <footer>
       <div style="margin-bottom:10px">Equal Housing Opportunity • All information deemed reliable but not guaranteed.</div>
       <div style="font-size:13px">© <span id="year"></span> 514 Cedar Crest Circle • Listing presented by <strong>Bhoomi Realty</strong> — Brokered by <strong>Virtual Properties Realty.Biz</strong></div>
-      <div style="font-size:13px; margin-top:6px">Brokerage Address: 2750 Premiere Pkwy, Suite 200, Duluth, GA 30097 • Office: (770) 495-5050 • Direct: (404) 398-1112</div>
+      <div style="font-size:13px; margin-top:6px">Brokerage Address: 2750 Premiere Pkwy, Suite 200, Duluth, GA 30097 • Office: (770) 495‑5050 • Direct: (404) 398‑1112</div>
     </footer>
   </main>
 
@@ -331,28 +277,11 @@
   </div>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Lightbox
-    const lb = document.getElementById('lightbox'); 
-    const lbImg = document.getElementById('lightbox-img');
-    document.querySelectorAll('.gallery img').forEach(img => { 
-      img.addEventListener('click', () => { lbImg.src = img.src; lb.style.display = 'flex'; }); 
-    });
+    const lb = document.getElementById('lightbox'); const lbImg = document.getElementById('lightbox-img');
+    document.querySelectorAll('.gallery img').forEach(img => { img.addEventListener('click', () => { lbImg.src = img.src; lb.style.display = 'flex'; }); });
     lb.addEventListener('click', () => lb.style.display = 'none');
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape') lb.style.display = 'none'; });
-
-    // Mobile carousel buttons
-    (function(){
-      const scroller = document.querySelector('#gallery .scroller');
-      const prev = document.querySelector('#gallery .scroll.prev');
-      const next = document.querySelector('#gallery .scroll.next');
-      if (!scroller || !prev || !next) return;
-      const jump = () => Math.round(scroller.clientWidth * 0.9);
-      prev.addEventListener('click', () => scroller.scrollBy({ left: -jump(), behavior: 'smooth' }));
-      next.addEventListener('click', () => scroller.scrollBy({ left:  jump(), behavior: 'smooth' }));
-    })();
   </script>
   <script async src="https://www.instagram.com/embed.js"></script>
 </body>
