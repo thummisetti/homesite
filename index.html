@@ -38,16 +38,40 @@
     .cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#22c55e,#16a34a);padding:12px 16px;border-radius:999px;font-weight:700;box-shadow:var(--shadow);text-decoration:none}
     .cta.secondary{background:linear-gradient(135deg,#60a5fa,#3b82f6)}
     .grid{display:grid;gap:18px}
+
+    /* ===== HERO (Wilbur-style) ===== */
     .hero{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
-    .hero img{width:100%;height:520px;object-fit:cover;display:block;filter:saturate(105%) contrast(105%)}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(6,7,13,.75) 70%)}
-    .hero-content{position:absolute;left:24px;right:24px;bottom:24px;display:flex;flex-wrap:wrap;gap:14px;align-items:end;justify-content:space-between}
-    .stats{display:flex;gap:10px;flex-wrap:wrap}
-    .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:10px 12px;border-radius:12px}
-    .price{font-size:clamp(24px, 3vw, 42px);font-weight:800}
+    .hero--tall img{height:68vh;max-height:760px;width:100%;object-fit:cover;display:block;filter:saturate(105%) contrast(105%)}
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55) 70%)}
+    .hero-meta{
+      position:absolute;left:24px;right:24px;bottom:24px;
+      display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between
+    }
+    .subtle{color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-size:13px}
+    .hero-title{font-weight:800;font-size:clamp(22px,3vw,36px);line-height:1.1}
+    .quickstats{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+    .quickstats .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:8px 12px;border-radius:999px}
+    .price-badge{
+      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;
+      background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:var(--shadow);font-weight:800;font-size:clamp(18px,2.2vw,24px)
+    }
+
     section{margin:36px 0}
     .card{background:linear-gradient(180deg,rgba(17,24,39,.9),rgba(2,6,23,.6));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
     .card .body{padding:22px}
+
+    /* Lead description block under hero */
+    .section-lead{
+      margin-top:24px;background:linear-gradient(180deg,rgba(17,24,39,.9),rgba(2,6,23,.6));
+      border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)
+    }
+    .section-lead .body{padding:22px}
+    .lead-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}
+    @media (max-width:900px){.lead-grid{grid-template-columns:1fr}}
+    .lead{color:#dbe3ee;font-size:17px;line-height:1.7}
+    .factlist{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+    .fact{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+
     .split{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
     @media (max-width: 900px){.split{grid-template-columns:1fr}}
 
@@ -59,14 +83,15 @@
     .gallery {
       display: grid;
       gap: 10px;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     }
     .gallery img{
       width:100%;
       height:100%;
-      aspect-ratio: 4 / 3;
+      aspect-ratio: 3 / 2;
       object-fit:cover;
       border-radius:12px;
+      border:1px solid rgba(255,255,255,.06);
       cursor:pointer
     }
 
@@ -162,56 +187,61 @@
   </header>
 
   <main class="container">
-    <div class="hero">
+    <!-- ===== New Wilbur-style hero ===== -->
+    <div class="hero hero--tall">
       <img
         src="/images/Hero.jpg"
         alt="Front exterior of the home"
-        width="2000"
-        height="1200"
+        width="2400" height="1400"
         fetchpriority="high"
         decoding="async"/>
       <div class="hero-overlay"></div>
-      <div class="hero-content">
+      <div class="hero-meta">
         <div>
-          <div class="price">$1,390,000</div>
-          <div class="stats">
-            <div class="stat">5 Beds</div><div class="stat">5 Baths</div><div class="stat">5343 Sq Ft</div><div class="stat">0.5 Acre Lot</div>
+          <div class="subtle">514 Cedar Crest • Woodstock, GA 30188</div>
+          <div class="hero-title">514 Cedar Crest Circle</div>
+          <div class="quickstats">
+            <span class="stat">5 Beds</span>
+            <span class="stat">5.5 Baths</span>
+            <span class="stat">5,343 Sq Ft</span>
+            <span class="stat">0.5 Acre</span>
+            <span class="stat">Built 2024</span>
           </div>
         </div>
-        <div class="realtor">
-          <img src="/images/venkat_headshot.jpg" alt="Bhoomi Realty logo/headshot" />
-          <div><div style="font-weight:700">Bhoomi Realty</div><div class="muted" style="font-size:14px">Virtual Properties Realty.Biz • GA Brokerage</div></div>
-        </div>
+        <div class="price-badge">$1,390,000</div>
       </div>
     </div>
 
-    <section class="split">
-      <div class="card"><div class="body">
-        <h2 style="margin:0 0 10px 0">Property Overview</h2>
-        <p class="muted preserve">Presenting the stunning north-facing Parkstone floor plan featuring 5 bedrooms, 5.5 baths, and 5,343 sq. ft. of finished living space, plus 2,466 sq. ft. of unfinished basement. Nestled on a half-acre cul-de-sac lot, this home offers elegance, privacy, and one of the community’s most desirable ultra-level lots.
+    <!-- ===== Description card under hero ===== -->
+    <section class="section-lead">
+      <div class="body">
+        <div class="lead-grid">
+          <div>
+            <h2 style="margin:0 0 10px 0">Property Overview</h2>
+            <p class="lead preserve">Presenting the stunning north-facing Parkstone floor plan featuring 5 bedrooms, 5.5 baths, and 5,343 sq. ft. of finished living space, plus 2,466 sq. ft. of unfinished basement. Nestled on a half-acre cul-de-sac lot, this home offers elegance, privacy, and one of the community’s most desirable ultra-level lots.
 
 ✨ Highlights:
-  • Gourmet kitchen with quartz countertops, ceiling-height cabinetry with accent lighting, gas cooktop, double ovens, farmhouse sink, and a full prep kitchen with finished pantry
-  • Formal dining room with quartz buffet and a private office for flexible living
-  • Spacious loft upstairs and a luxurious primary suite with sitting area, spa-inspired bath, oversized dual-head shower, freestanding tub, and custom California Closet
-  • Each secondary bedroom includes a private en-suite bath
+• Gourmet kitchen with quartz countertops, ceiling-height cabinetry with accent lighting, gas cooktop, double ovens, farmhouse sink, and a full prep kitchen with finished pantry
+• Formal dining room with quartz buffet and a private office for flexible living
+• Spacious loft upstairs and a luxurious primary suite with sitting area, spa-inspired bath, oversized dual-head shower, freestanding tub, and custom California Closet
+• Each secondary bedroom includes a private en-suite bath
 
 🌟 Upgrades include: smart lighting, mosaic marble feature walls, upgraded flooring, surround sound wiring, epoxy-finished 3-car garage, permanent smart holiday lights, and a PoE hardwired security system.
 
 🏊 Residents of Milton Overlook enjoy walkable amenities—pool, tennis, and playground—all just minutes from Alpharetta, Milton, and Roswell, with the advantage of lower Cherokee County taxes.</p>
-        <ul class="clean" style="margin-top:14px">
-          <li>Year Built: 2024</li><li>Garage: 3-car</li><li>HVAC: Dual-zone</li><li>HOA: $1050/yr</li><li>Brokerage: Virtual Properties Realty.Biz (GA)</li><li>Taxes (’24): $6,980</li>
-        </ul>
-        <div style="margin-top:16px; display:flex; gap:10px; flex-wrap:wrap">
-          <span class="pill">Smart Home</span><span class="pill">EV-ready</span><span class="pill">Hardwood Floors</span><span class="pill">Cul-de-sac</span>
+          </div>
+          <div>
+            <ul class="factlist">
+              <li class="fact"><strong>Address:</strong> 514 Cedar Crest Circle, Woodstock, GA 30188</li>
+              <li class="fact"><strong>Price:</strong> $1,390,000</li>
+              <li class="fact"><strong>Type:</strong> Single Family • Parkstone plan</li>
+              <li class="fact"><strong>Lot:</strong> ~0.50 acre cul-de-sac</li>
+              <li class="fact"><strong>Garage:</strong> 3-car • Epoxy floor</li>
+              <li class="fact"><strong>Broker:</strong> Virtual Properties Realty.Biz</li>
+            </ul>
+          </div>
         </div>
-      </div></div>
-      <div class="card"><div class="body">
-        <h3 style="margin-top:0">Showings by appointment only</h3>
-        <h3>Contact</h3>
-        <p class="muted">Call/text <a href="tel:+14043981112">(404) 398-1112</a> or email <a href="mailto:info@bhoomirealtyga.com">info@bhoomirealtyga.com</a></p>
-        <a class="cta" href="#contact">Request Info</a>
-      </div></div>
+      </div>
     </section>
 
     <!-- ===== GALLERY SECTION (grid desktop, swipe on mobile) ===== -->
@@ -275,7 +305,6 @@
         </ul>
       </div>
     </div>
-
     </section>
 
     <section class="card">
@@ -306,39 +335,50 @@
       </div>
     </div></section>
 
+    <!-- ===== Contact (two-column) ===== -->
     <section id="contact" class="card">
-    <div class="body">
-    <h2 style="margin-top:0">Request Information / Schedule a Tour</h2>
+      <div class="body">
+        <h2 style="margin-top:0">Request Information / Schedule a Tour</h2>
 
-    <form action="https://formspree.io/f/xldonapp" method="POST"
-          style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
-      <!-- visible fields -->
-      <input required name="name"  placeholder="Your name"
-             style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
-      <input required type="email" name="email" placeholder="Email address"
-             style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
-      <input name="phone" placeholder="Phone (optional)"
-             style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
-      <input name="when" placeholder="Preferred date/time"
-             style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
-      <textarea name="message" placeholder="Tell us what you’d like to know" rows="5"
-                style="grid-column:1/-1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)"></textarea>
+        <div class="contact-grid">
+          <div class="contact-note">
+            <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
+              <img src="/images/venkat_headshot.jpg" alt="Bhoomi Realty headshot" width="56" height="56" style="border-radius:50%; object-fit:cover;">
+              <div>
+                <div style="font-weight:700">Bhoomi Realty</div>
+                <div class="muted" style="font-size:14px">Virtual Properties Realty.Biz • GA</div>
+              </div>
+            </div>
+            <div class="muted" style="font-size:14px; line-height:1.6;">
+              Have a question about this property or want to book a private showing?
+              Call/text <a href="tel:+14043981112">(404) 398-1112</a> or use the form.
+            </div>
+          </div>
 
-      <!-- hidden helpers -->
-      <input type="hidden" name="_subject"  value="New inquiry — 514 Cedar Crest Circle">
-      <input type="hidden" name="listing"   value="514 Cedar Crest Circle, Woodstock GA 30188">
-      <input type="hidden" name="_redirect" value="https://514cedarcrestcircle.online/#thanks">
-      <input type="text"   name="_gotcha"   style="display:none"> <!-- spam trap -->
+          <form action="https://formspree.io/f/xldonapp" method="POST"
+                style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+            <input required name="name"  placeholder="Your name"
+                   style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+            <input required type="email" name="email" placeholder="Email address"
+                   style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+            <input name="phone" placeholder="Phone (optional)"
+                   style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+            <input name="when" placeholder="Preferred date/time"
+                   style="padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)">
+            <textarea name="message" placeholder="Tell us what you’d like to know" rows="5"
+                      style="grid-column:1/-1;padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);color:var(--text)"></textarea>
 
-      <button class="cta" type="submit" style="border:0;cursor:pointer">Send Request</button>
-    </form>
+            <!-- hidden helpers -->
+            <input type="hidden" name="_subject"  value="New inquiry — 514 Cedar Crest Circle">
+            <input type="hidden" name="listing"   value="514 Cedar Crest Circle, Woodstock GA 30188">
+            <input type="hidden" name="_redirect" value="https://514cedarcrestcircle.online/#thanks">
+            <input type="text"   name="_gotcha"   style="display:none"> <!-- spam trap -->
 
-    <p class="muted" style="margin-top:10px;font-size:13px">
-      This form is powered by Formspree. We’ll never share your info.
-    </p>
-    </div>
+            <button class="cta" type="submit" style="border:0;cursor:pointer">Send Request</button>
+          </form>
+        </div>
+      </div>
     </section>
-
 
     <footer>
       <div style="font-size:13px">© <span id="year"></span> 514 Cedar Crest Circle • Listing presented by <strong>Bhoomi Realty</strong> — Brokered by <strong>Virtual Properties Realty.Biz</strong></div>
@@ -382,17 +422,17 @@
   <script async src="https://www.instagram.com/embed.js"></script>
 
   <section id="thanks" class="card" style="display:none;">
-  <div class="body">
-    <h2 style="margin-top:0">Thanks!</h2>
-    <p class="muted">Your request was sent. We’ll get back to you shortly.</p>
-  </div>
+    <div class="body">
+      <h2 style="margin-top:0">Thanks!</h2>
+      <p class="muted">Your request was sent. We’ll get back to you shortly.</p>
+    </div>
   </section>
 
   <script>
-  if (location.hash === '#thanks') {
-    const thx = document.getElementById('thanks');
-    if (thx) thx.style.display = 'block';
-  }
+    if (location.hash === '#thanks') {
+      const thx = document.getElementById('thanks');
+      if (thx) thx.style.display = 'block';
+    }
   </script>
 
 </body>
