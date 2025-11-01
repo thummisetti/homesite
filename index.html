@@ -24,59 +24,266 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='0.9em' font-size='80'%3E%F0%9F%8F%A0%3C/text%3E%3C/svg%3E">
   <style>
     :root{
-      --bg:#0f172a; --card:#111827ee; --muted:#94a3b8; --accent:#22c55e; --accent-2:#60a5fa; --text:#e5e7eb;
-      --shadow:0 10px 25px rgba(0,0,0,.35); --radius:18px;
+      --bg:#0f172a;
+      --bg-soft:#111827ee;
+      --card:#111827ee;
+      --muted:#94a3b8;
+      --text:#e5e7eb;
+      --text-strong:#fff;
+      --accent:#22c55e;
+      --accent-soft:rgba(34,197,94,.12);
+      --accent-border:rgba(34,197,94,.4);
+      --surface-hi:rgba(255,255,255,.06);
+      --surface-mid:rgba(255,255,255,.08);
+      --border-mid:rgba(255,255,255,.1);
+      --border-low:rgba(255,255,255,.06);
+      --shadow:0 10px 25px rgba(0,0,0,.35);
+      --radius:18px;
     }
+
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:linear-gradient(180deg,#0b1229 0%, #0f172a 40%, #0b1229 100%);color:var(--text);font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
-    a{color:inherit}
+    html,body{
+      margin:0;
+      padding:0;
+      background:linear-gradient(180deg,#0b1229 0%, #0f172a 40%, #0b1229 100%);
+      color:var(--text);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji"}
+    a{color:inherit;text-decoration:none}
+
     .container{max-width:1150px;margin:0 auto;padding:24px}
-    header{position:sticky;top:0;z-index:20;background:rgba(8,12,28,.65);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+
+    header{
+      position:sticky;top:0;z-index:20;
+      background:rgba(8,12,28,.65);
+      backdrop-filter:saturate(140%) blur(10px);
+      border-bottom:1px solid rgba(255,255,255,.08)
+    }
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:flex;align-items:center;gap:12px;font-weight:700}
-    .badge{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border:1px solid rgba(255,255,255,.12);border-radius:999px;color:#d1fae5;background:linear-gradient(180deg,rgba(34,197,94,.15),rgba(34,197,94,.06));}
-    .cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,#22c55e,#16a34a);padding:12px 16px;border-radius:999px;font-weight:700;box-shadow:var(--shadow);text-decoration:none}
-    .cta.secondary{background:linear-gradient(135deg,#60a5fa,#3b82f6)}
+
+    .badge{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:6px 10px;
+      font-size:12px;
+      line-height:1.2;
+      border:1px solid var(--border-mid);
+      border-radius:999px;
+      color:var(--accent);
+      background:rgba(34,197,94,.07);
+      font-weight:600;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+    }
+
+    /* toned-down CTA buttons */
+    .actions{display:flex;gap:10px;flex-wrap:wrap}
+    .cta{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:10px 14px;
+      border-radius:999px;
+      font-weight:600;
+      font-size:14px;
+      line-height:1.2;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--text);
+      box-shadow:none;
+    }
+    .cta.secondary{
+      background:rgba(96,165,250,.08);
+      border:1px solid rgba(96,165,250,.25);
+      color:#bfdbfe;
+    }
+
     .grid{display:grid;gap:18px}
 
     /* ===== HERO (Wilbur-style) ===== */
-    .hero{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);}
-    .hero--tall img{height:68vh;max-height:760px;width:100%;object-fit:cover;display:block;filter:saturate(105%) contrast(105%)}
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55) 70%)}
+    .hero{
+      position:relative;
+      border-radius:var(--radius);
+      overflow:hidden;
+      box-shadow:var(--shadow);
+    }
+    .hero--tall img{
+      height:68vh;
+      max-height:760px;
+      width:100%;
+      object-fit:cover;
+      display:block;
+      filter:saturate(105%) contrast(105%);
+    }
+    .hero-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(180deg,rgba(0,0,0,.15),rgba(0,0,0,.55) 70%);
+    }
     .hero-meta{
       position:absolute;left:24px;right:24px;bottom:24px;
-      display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between
+      display:flex;flex-wrap:wrap;gap:14px;
+      align-items:flex-end;justify-content:space-between
     }
-    .subtle{color:var(--muted);letter-spacing:.04em;text-transform:uppercase;font-size:13px}
-    .hero-title{font-weight:800;font-size:clamp(22px,3vw,36px);line-height:1.1}
-    .quickstats{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
-    .quickstats .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:8px 12px;border-radius:999px}
+    .subtle{
+      color:var(--muted);
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      font-size:13px
+    }
+    .hero-title{
+      font-weight:800;
+      font-size:clamp(22px,3vw,36px);
+      line-height:1.1;
+      color:var(--text-strong);
+    }
+    .quickstats{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top:8px
+    }
+    .quickstats .stat{
+      background:rgba(255,255,255,.08);
+      border:1px solid rgba(255,255,255,.12);
+      padding:8px 12px;
+      border-radius:999px;
+      font-size:13px;
+      line-height:1.2;
+      color:var(--text);
+      font-weight:500;
+    }
     .price-badge{
-      display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:999px;
-      background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:var(--shadow);font-weight:800;font-size:clamp(18px,2.2vw,24px)
+      display:inline-flex;align-items:center;gap:10px;
+      padding:10px 14px;
+      border-radius:12px;
+      background:rgba(34,197,94,.12);
+      border:1px solid rgba(34,197,94,.4);
+      box-shadow:var(--shadow);
+      font-weight:700;
+      font-size:clamp(18px,2.2vw,22px);
+      color:#bbf7d0;
     }
 
     section{margin:36px 0}
-    .card{background:linear-gradient(180deg,rgba(17,24,39,.9),rgba(2,6,23,.6));border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)}
-    .card .body{padding:22px}
 
-    /* Lead description block under hero */
-    .section-lead{
-      margin-top:24px;background:linear-gradient(180deg,rgba(17,24,39,.9),rgba(2,6,23,.6));
-      border:1px solid rgba(255,255,255,.08);border-radius:var(--radius);box-shadow:var(--shadow)
+    /* ============ DESCRIPTION SECTION REWORK ============ */
+    .overview-card{
+      background:linear-gradient(180deg,rgba(17,24,39,.9),rgba(2,6,23,.6));
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:24px 24px 32px;
     }
-    .section-lead .body{padding:22px}
-    .lead-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:18px}
-    @media (max-width:900px){.lead-grid{grid-template-columns:1fr}}
-    .lead{color:#dbe3ee;font-size:17px;line-height:1.7}
-    .factlist{list-style:none;padding:0;margin:0;display:grid;gap:10px}
-    .fact{padding:10px 12px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
 
-    .split{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
-    @media (max-width: 900px){.split{grid-template-columns:1fr}}
+    /* header row like the reference: headline + price */
+    .overview-headline{
+      text-align:center;
+      color:var(--text-strong);
+      font-size:clamp(22px,2vw,28px);
+      font-weight:700;
+      line-height:1.25;
+      margin:0 0 6px 0;
+    }
+    .overview-price-line{
+      text-align:center;
+      font-size:clamp(18px,1.4vw,20px);
+      font-weight:600;
+      line-height:1.4;
+      color:var(--text);
+    }
+    .overview-price-line .price-accent{
+      color:#fde68a;
+      font-weight:700;
+    }
 
-    /* preserve line breaks in selected text blocks */
-    .preserve { white-space: pre-line; }
+    /* horizontal stats row */
+    .key-stats-row{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:24px 32px;
+      margin:28px auto 24px;
+      max-width:1000px;
+      border-top:1px solid rgba(255,255,255,.08);
+      border-bottom:1px solid rgba(255,255,255,.08);
+      padding:24px 0;
+    }
+    .key-stat{
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      text-align:center;
+      min-width:110px;
+      color:var(--text);
+    }
+    .key-stat-value{
+      font-size:20px;
+      font-weight:600;
+      line-height:1.2;
+      color:var(--text-strong);
+      margin-top:8px;
+    }
+    .key-stat-label{
+      font-size:14px;
+      line-height:1.4;
+      color:var(--muted);
+    }
+
+    /* single-column narrative body */
+.overview-body{
+  max-width:900px;
+  margin:0 auto;
+}
+
+.overview-text{
+  font-size:16px;
+  line-height:1.7;
+  color:var(--text);
+  white-space:pre-line;
+}
+
+.overview-text h3{
+  margin:1.5em 0 .5em;
+  font-size:16px;
+  font-weight:600;
+  color:var(--text-strong);
+}
+
+.overview-text ul{
+  margin:0;
+  padding-left:1em;
+  list-style:none;
+}
+
+.overview-text ul li{
+  margin-bottom:.5em;
+  position:relative;
+  padding-left:1em;
+}
+
+.overview-text ul li::before{
+  content:"•";
+  position:absolute;
+  left:0;
+  color:var(--text);
+}
+
+    /* right-side fact chips column */
+    .fact-stack{
+      display:grid;
+      gap:10px;
+    }
+    .fact-chip{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:10px;
+      padding:12px 14px;
+      font-size:14px;
+      line-height:1.4;
+      color:var(--text);
+      font-weight:500;
+    }
+    .fact-chip strong{
+      color:var(--text-strong);
+      font-weight:600;
+    }
 
     /* === GALLERY (grid desktop + swipe carousel mobile) === */
     .gallery-wrap { position: relative; }
@@ -95,7 +302,6 @@
       cursor:pointer
     }
 
-    /* Mobile: turn into a snap carousel */
     @media (max-width: 900px){
       .gallery{
         display:flex;
@@ -128,25 +334,88 @@
       .gallery-wrap .scroll.prev{ left:6px; }
       .gallery-wrap .scroll.next{ right:6px; }
     }
-
-    /* Hide the arrows on desktop grid */
     @media (min-width: 901px){
       .gallery-wrap .scroll{ display:none; }
     }
 
     ul.clean{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-    ul.clean li{padding:12px 14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);border-radius:12px}
+    ul.clean li{
+      padding:12px 14px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px
+    }
     @media (max-width:700px){ul.clean{grid-template-columns:1fr}}
+
     .map{position:relative;padding-bottom:56%;height:0;overflow:hidden;border-radius:12px}
     .map iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:12px}
-    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+
+    .lightbox{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.9);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      z-index:50
+    }
     .lightbox img{max-width:92vw;max-height:85vh;border-radius:14px}
+
     footer{margin:40px 0 80px;color:var(--muted);text-align:center}
+
     .realtor{display:flex;gap:12px;align-items:center}
-    .realtor img{width:52px;height:52px;border-radius:50%;object-fit:cover}
-    .fab{position:fixed;right:18px;bottom:18px;display:flex;gap:10px}
-    .fab a{display:inline-flex;padding:14px 16px;border-radius:999px;text-decoration:none;font-weight:700}
-    .muted{color:var(--muted)}.pill{display:inline-flex;gap:8px;align-items:center;padding:8px 12px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+    .realtor img{
+      width:52px;height:52px;
+      border-radius:50%;
+      object-fit:cover;
+      object-position:center 50%;
+      transform:scale(1.1);
+      background:#fff;
+    }
+
+    /* contact grid */
+    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    @media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+    .contact-note{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;
+      padding:16px;
+    }
+
+    /* floating call/text buttons -> chill style */
+    .fab{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      display:flex;
+      gap:10px;
+    }
+    .fab a{
+      display:inline-flex;
+      padding:10px 14px;
+      border-radius:999px;
+      text-decoration:none;
+      font-weight:600;
+      font-size:14px;
+      line-height:1.2;
+      background:rgba(255,255,255,.07);
+      border:1px solid rgba(255,255,255,.12);
+      color:var(--text);
+      box-shadow:none;
+    }
+
+    .muted{color:var(--muted)}
+    .pill{
+      display:inline-flex;
+      gap:8px;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.08)
+    }
   </style>
   <script type="application/ld+json">
   {
@@ -173,10 +442,10 @@
   <header>
     <div class="container nav">
       <div class="brand">
-        <span class="badge">FOR SALE</span>
+        <span class="badge">For Sale</span>
         <div>
           <div style="font-size:15px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted)">514 Cedar Crest</div>
-          <div style="font-size:18px; font-weight:700">Woodstock, GA 30188</div>
+          <div style="font-size:18px; font-weight:700; color:var(--text-strong)">Woodstock, GA 30188</div>
         </div>
       </div>
       <div class="actions">
@@ -187,7 +456,7 @@
   </header>
 
   <main class="container">
-    <!-- ===== New Wilbur-style hero ===== -->
+    <!-- ===== Hero ===== -->
     <div class="hero hero--tall">
       <img
         src="/images/Hero.jpg"
@@ -212,39 +481,62 @@
       </div>
     </div>
 
-    <!-- ===== Description card under hero ===== -->
-    <section class="section-lead">
-      <div class="body">
-        <div class="lead-grid">
-          <div>
-            <h2 style="margin:0 0 10px 0">Property Overview</h2>
-            <p class="lead preserve">Presenting the stunning north-facing Parkstone floor plan featuring 5 bedrooms, 5.5 baths, and 5,343 sq. ft. of finished living space, plus 2,466 sq. ft. of unfinished basement. Nestled on a half-acre cul-de-sac lot, this home offers elegance, privacy, and one of the community’s most desirable ultra-level lots.
+    <!-- ===== Overview / Description Section ===== -->
+    <section class="overview-card">
+      <h2 class="overview-headline">LUXURY LIVING IN MILTON OVERLOOK</h2>
+      <div class="overview-price-line">OFFERED AT <span class="price-accent">$1,390,000</span></div>
 
-✨ Highlights:
-• Gourmet kitchen with quartz countertops, ceiling-height cabinetry with accent lighting, gas cooktop, double ovens, farmhouse sink, and a full prep kitchen with finished pantry
-• Formal dining room with quartz buffet and a private office for flexible living
-• Spacious loft upstairs and a luxurious primary suite with sitting area, spa-inspired bath, oversized dual-head shower, freestanding tub, and custom California Closet
-• Each secondary bedroom includes a private en-suite bath
-
-🌟 Upgrades include: smart lighting, mosaic marble feature walls, upgraded flooring, surround sound wiring, epoxy-finished 3-car garage, permanent smart holiday lights, and a PoE hardwired security system.
-
-🏊 Residents of Milton Overlook enjoy walkable amenities—pool, tennis, and playground—all just minutes from Alpharetta, Milton, and Roswell, with the advantage of lower Cherokee County taxes.</p>
-          </div>
-          <div>
-            <ul class="factlist">
-              <li class="fact"><strong>Address:</strong> 514 Cedar Crest Circle, Woodstock, GA 30188</li>
-              <li class="fact"><strong>Price:</strong> $1,390,000</li>
-              <li class="fact"><strong>Type:</strong> Single Family • Parkstone plan</li>
-              <li class="fact"><strong>Lot:</strong> ~0.50 acre cul-de-sac</li>
-              <li class="fact"><strong>Garage:</strong> 3-car • Epoxy floor</li>
-              <li class="fact"><strong>Broker:</strong> Virtual Properties Realty.Biz</li>
-            </ul>
-          </div>
+      <div class="key-stats-row">
+        <div class="key-stat">
+          <div class="key-stat-value">5</div>
+          <div class="key-stat-label">Bedrooms</div>
         </div>
+        <div class="key-stat">
+          <div class="key-stat-value">5.5</div>
+          <div class="key-stat-label">Bathrooms</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat-value">2024</div>
+          <div class="key-stat-label">Year Built</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat-value">3 Car</div>
+          <div class="key-stat-label">Garage</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat-value">5,343</div>
+          <div class="key-stat-label">Sq. Ft.</div>
+        </div>
+        <div class="key-stat">
+          <div class="key-stat-value">0.5</div>
+          <div class="key-stat-label">Acres</div>
+        </div>
+      </div>
+
+      <div class="overview-body">
+        <div class="overview-text">
+Presenting the stunning north-facing Parkstone floor plan featuring 5 bedrooms, 5.5 baths, and 5,343 sq. ft. of finished living space, plus 2,466 sq. ft. of unfinished basement. Nestled on a half-acre cul-de-sac lot, this home offers elegance, privacy, and one of the community’s most desirable ultra-level lots.
+
+<h3>✨ Highlights:</h3>
+
+Gourmet kitchen with quartz countertops, ceiling-height cabinetry with accent lighting, gas cooktop, double ovens, farmhouse sink, and a full prep kitchen with finished pantry
+Formal dining room with quartz buffet and a private office for flexible living
+Spacious loft upstairs and a luxurious primary suite with sitting area, spa-inspired bath, oversized dual-head shower, freestanding tub, and custom California Closet
+Each secondary bedroom includes a private en-suite bath
+
+
+<h3>🌟 Upgrades include:</h3>
+
+  Smart lighting, mosaic marble feature walls, upgraded flooring, surround sound wiring, epoxy-finished 3-car garage, permanent smart holiday lights, and a PoE hardwired security system
+
+<h3>🏊 Neighborhood:</h3>
+Residents of Milton Overlook enjoy walkable amenities—pool, tennis, and playground—all just minutes from Alpharetta, Milton, and Roswell, with the advantage of lower Cherokee County taxes.
+        </div>
+
       </div>
     </section>
 
-    <!-- ===== GALLERY SECTION (grid desktop, swipe on mobile) ===== -->
+    <!-- ===== Gallery ===== -->
     <section id="gallery" class="card">
       <div class="body">
         <h2 style="margin-top:0">Photo Gallery</h2>
@@ -349,16 +641,16 @@
                    border-radius:50%;
                    object-fit:cover;
                    object-position:center 50%;
-                   transform:scale(1.1);">
-
+                   transform:scale(1.1);
+                   background:#fff;">
               <div>
-                <div style="font-weight:700">Bhoomi Realty</div>
+                <div style="font-weight:700;color:var(--text-strong)">Bhoomi Realty</div>
                 <div class="muted" style="font-size:14px">Virtual Properties Realty.Biz • GA</div>
               </div>
             </div>
             <div class="muted" style="font-size:14px; line-height:1.6;">
               Have a question about this property or want to book a private showing?
-              Call/text <a href="tel:+14043981112">(404) 398-1112</a> or use the form.
+              Call/text <a href="tel:+14043981112" style="color:var(--text)"> (404) 398-1112</a> or use the form.
             </div>
           </div>
 
@@ -381,7 +673,7 @@
             <input type="hidden" name="_redirect" value="https://514cedarcrestcircle.online/#thanks">
             <input type="text"   name="_gotcha"   style="display:none"> <!-- spam trap -->
 
-            <button class="cta" type="submit" style="border:0;cursor:pointer">Send Request</button>
+            <button class="cta" type="submit" style="border:1px solid rgba(255,255,255,.12);">Send Request</button>
           </form>
         </div>
       </div>
@@ -395,7 +687,7 @@
 
   <div class="fab">
     <a class="cta" href="tel:+14043981112">Call</a>
-    <a class="cta secondary" href="sms:+14043981112">Text</a>
+    <a class="cta" href="sms:+14043981112">Text</a>
   </div>
 
   <div class="lightbox" id="lightbox" aria-modal="true" role="dialog">
